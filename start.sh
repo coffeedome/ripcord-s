@@ -12,21 +12,29 @@
 ########################################################################
 #CONSTANTS
 LICENSES_URL="https://raw.githubusercontent.com/spdx/license-list-data/main/json/licenses.json"
-PWTOOLS_REPO_URL="https://github.com/aws-powertools/powertools-lambda-typescript.git"
-echo "Enter project name..."
-read -r PROJECT_NAME
-if [ -z $PROJECT_NAME];then
-    echo "PROJECT_NAME cannot be empty..."
-fi
+PWTOOLS_REPO_URL="https://api.github.com/repos/aws-powertools/powertools-lambda-typescript"
+main() {
+    echo "Enter project name..."
+    read -r PROJECT_NAME
+    if [ -z $PROJECT_NAME];then
+        echo "PROJECT_NAME cannot be empty..."
+    fi
 
-echo "Enter project description...[default project description]"
-read -r PROJECT_DESCRIPTION
+    echo "Enter project description...[default project description]"
+    read -r PROJECT_DESCRIPTION
 
-if [ -z $PROJECT_DESCRIPTION];then
-    echo "PROJECT_DESCRIPTION cannot be empty..."
-fi
+    if [ -z $PROJECT_DESCRIPTION];then
+        echo "PROJECT_DESCRIPTION cannot be empty..."
+    fi
+}
 
-
+download(){
+    echo "Fetching latest version of TS Powertools project..."
+    $LATEST_PWTOOLS_RELEASE=$(curl "${PWTOOLS_REPO_URL}/releases/latest" | jq -r .id)
+    echo "Downloading latest version $LATEST_PWTOOLS_RELEASE"
+    
+    
+}
 
 
 mkdir "$PROJECT_NAME" || echo "$PROJECT_NAME project already exists in your directory" && exit 1;
