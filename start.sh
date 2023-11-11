@@ -34,7 +34,7 @@ main() {
 
     download
 
-    code -a $PROJECT_NAME
+    cd $PROJECT_NAME && code -a 
 }
 
 download(){
