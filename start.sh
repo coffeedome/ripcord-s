@@ -33,6 +33,8 @@ main() {
     cd "$PROJECT_NAME" || exit 1
 
     download
+
+    code -a $PROJECT_NAME
 }
 
 download(){
